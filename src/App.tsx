@@ -7,8 +7,6 @@ function App() {
       <header className="App-header">
         hello
       </header>
-      <SvgInOutCall callsType="outcoming" />
-      <SvgInOutCall callsType="incoming" />
     </div>
   );
 }
