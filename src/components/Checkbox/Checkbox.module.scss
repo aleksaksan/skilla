@@ -1,0 +1,9 @@
+@import '../../style/colors';
+
+.square {
+  fill: $primary-grey;
+  
+  &:hover {
+    fill: $primary-blue;
+  }
+}
