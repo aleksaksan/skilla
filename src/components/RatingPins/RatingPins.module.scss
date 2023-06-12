@@ -1,0 +1,28 @@
+@import '../../style/colors';
+
+.container {
+  margin-right: 8px;
+}
+
+.pin {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+
+  &+& {
+    margin-left: 2px;
+  }
+}
+
+.grey {
+  background-color: $primary-grey;
+}
+
+.green {
+  background-color: $primary-green;
+}
+
+.red {
+  background-color: $primary-red;
+}
