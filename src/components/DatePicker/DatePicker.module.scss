@@ -1,0 +1,33 @@
+@import '../../style/colors';
+@import '../../style/common';
+
+.container {
+  width: 115px;
+  @include space-between-center;
+
+  &>button {
+    cursor: pointer;
+    fill: $primary-grey;
+    color: $text-blue;
+    @include space-between-center;
+
+    &>label {
+      margin-left: 8px;
+      cursor: pointer;
+    }
+
+    &:hover {
+      fill: $primary-blue;
+    }
+
+    &:active {
+      fill: $primary-active;
+    }
+  }
+
+  svg {
+    fill: inherit;
+  }
+
+}
+
