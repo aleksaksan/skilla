@@ -1,7 +1,9 @@
-@import '../../style/colors';
+@import '../../../style/colors';
 
 .container {
   margin-right: 8px;
+  display: inline-block;
+  width: 28px;
 }
 
 .pin {

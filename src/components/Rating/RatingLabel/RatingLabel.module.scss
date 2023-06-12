@@ -1,0 +1,25 @@
+@import '../../../style/colors';
+
+.label {
+  padding: 6px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.bad {
+  color: $primary-red;
+  border: 1px solid $primary-red;
+  background-color: $pale-red;
+}
+
+.good {
+  color: $text-primary;
+  border: 1px solid $primary-grey;
+  background-color: $secondary-grey;
+}
+
+.well {
+  color: $primary-green;
+  border: 1px solid $primary-green;
+  background-color: $pale-green;
+}

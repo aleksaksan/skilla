@@ -1,12 +1,9 @@
 import React from 'react';
-import { RatingEnum } from '../../shared/enums/RatingEnum';
+import { RatingEnum } from '../../../shared/enums/RatingEnum';
 import style from './RatingPins.module.scss';
+import { RatingProps } from '../Rating';
 
-export type RatingPinsProps = {
-  rating: RatingEnum,
-}
-
-export const RatingPins = (props: RatingPinsProps) => {
+export const RatingPins = (props: RatingProps) => {
   
   switch (props.rating) {
     case RatingEnum.Badly:
