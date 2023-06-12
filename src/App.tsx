@@ -1,3 +1,4 @@
+import { DatePicker } from "./components/DatePicker/DatePicker";
 
 
 
@@ -7,7 +8,7 @@ function App() {
       <header>
         <h1>hello</h1>
       </header>
-    /
+    <DatePicker value="3 дня" />
     </div>
   );
 }
