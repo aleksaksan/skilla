@@ -1,6 +1,6 @@
 import React from 'react';
-import { SvgIncoming } from './SvgFiles/SvgIncoming';
-import { SvgOutcoming } from './SvgFiles/SvgOutcoming';
+import { SvgIncoming } from './SvgFiles/SvgInOutCall/SvgIncoming';
+import { SvgOutcoming } from './SvgFiles/SvgInOutCall/SvgOutcoming';
 
 export type SvgInOutCallProps = {
   callsType: 'incoming' | 'outcoming',

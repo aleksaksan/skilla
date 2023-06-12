@@ -1,0 +1,28 @@
+@import '../../style/colors';
+
+.wrapper {
+  outline: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+
+  svg {
+    fill: $primary-grey;
+  }
+
+  &:hover {
+    svg {
+      fill: $primary-blue;
+    }
+  }
+
+  &:active {
+    svg {
+      fill: $primary-active;
+    }
+  }
+}
