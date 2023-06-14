@@ -7,7 +7,6 @@
 
   &>button {
     cursor: pointer;
-    fill: $primary-grey;
     color: $text-blue;
     @include space-between-center;
 
@@ -16,13 +15,18 @@
       cursor: pointer;
     }
 
-    &:hover {
-      fill: $primary-blue;
+    &>svg {
+      fill: $primary-grey;
+
+      &:hover {
+        fill: $primary-blue;
+      }
+
+      &:active {
+        fill: $primary-active;
+      }
     }
 
-    &:active {
-      fill: $primary-active;
-    }
   }
 
   svg {
