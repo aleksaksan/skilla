@@ -1,7 +1,7 @@
 import style from './DatePicker.module.scss';
-import { SvgCalendar } from '../SvgIcon/SvgFiles/SvgDatePicker/SvgCalendar';
-import { SvgChevronLeft } from '../SvgIcon/SvgFiles/SvgDatePicker/SvgChevronLeft';
-import { SvgChevronRight } from '../SvgIcon/SvgFiles/SvgDatePicker/SvgChevronRight';
+import { SvgCalendar } from '../../SvgIcon/SvgFiles/SvgDatePicker/SvgCalendar';
+import { SvgChevronLeft } from '../../SvgIcon/SvgFiles/SvgDatePicker/SvgChevronLeft';
+import { SvgChevronRight } from '../../SvgIcon/SvgFiles/SvgDatePicker/SvgChevronRight';
 
 export type DatePickerProps = {
   onClick?: () => void;

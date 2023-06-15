@@ -1,5 +1,5 @@
-@import '../../style/colors';
-@import '../../style/common';
+@import '../../../style/colors';
+@import '../../../style/common';
 
 .container {
   width: 115px;
@@ -7,7 +7,6 @@
 
   &>button {
     cursor: pointer;
-    fill: $primary-grey;
     color: $text-blue;
     @include space-between-center;
 
@@ -16,18 +15,21 @@
       cursor: pointer;
     }
 
-    &:hover {
-      fill: $primary-blue;
-    }
+    &>svg {
+      fill: $primary-grey;
 
-    &:active {
-      fill: $primary-active;
+      &:hover {
+        fill: $primary-blue;
+      }
+
+      &:active {
+        fill: $primary-active;
+      }
     }
   }
 
   svg {
     fill: inherit;
   }
-
 }
 
