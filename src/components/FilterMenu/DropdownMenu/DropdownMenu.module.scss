@@ -1,11 +1,11 @@
-@import '../../style/colors';
+@import '../../../style/colors';
 
 .dropdown {
   width: 204px;
   box-shadow: 0px 0px 26px rgba(233, 237, 243, 0.8);
   border-radius: 4px;
   border: 1px solid #EAF0FA;
-  position: relative;
+  position: absolute;
   z-index: 1;
   display: none;
 }
@@ -29,4 +29,8 @@
 
 .opened {
   display: block;
+}
+
+.wrapper {
+  position: relative;
 }

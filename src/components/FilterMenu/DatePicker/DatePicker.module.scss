@@ -1,5 +1,5 @@
-@import '../../style/colors';
-@import '../../style/common';
+@import '../../../style/colors';
+@import '../../../style/common';
 
 .container {
   width: 115px;
@@ -26,12 +26,10 @@
         fill: $primary-active;
       }
     }
-
   }
 
   svg {
     fill: inherit;
   }
-
 }
 
