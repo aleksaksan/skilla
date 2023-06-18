@@ -1,3 +1,4 @@
+import { AudioPlayer } from "./components/AudioPlayer/AudioPlayer";
 
 
 function App() {
@@ -9,7 +10,7 @@ function App() {
         <h1>hello</h1>
       </header>
 
-
+      <AudioPlayer />
     </div>
   );
 }
