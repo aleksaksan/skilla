@@ -49,11 +49,6 @@ export const AudioPlayer = () => {
     return () => clearInterval(interval);
   }, [sound]);
 
-//   const sound = new Howl({
-//   src: ['./testSong.mp3'],
-//    autoplay: true,
-// });
-
   const playingButton = () => {
     // const AUDIO = new Audio(audioFile);
     // console.log(audioFile)
