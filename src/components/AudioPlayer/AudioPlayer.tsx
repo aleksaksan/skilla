@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react"; 
+import { useEffect, useRef, useState } from "react"; 
 import useSound from "use-sound";
 import './AudioPlayer.scss';
+import audioFile from './testSong.mp3';
 
 export const AudioPlayer = () => {
+  const audioPlayerRef = useRef<HTMLAudioElement>(null);
   const [url, setUrl] = useState('')
   const [isPlaying, setIsPlaying] = useState(false);
   const [timeDuration, setTimeDuration] = useState({
@@ -18,7 +20,7 @@ export const AudioPlayer = () => {
   const [play, { pause, duration, sound }] = useSound(url);
 
   useEffect(() => {
-    setUrl('./testSong.mp3');
+    setUrl(audioFile);
   }, [])
 
   useEffect(() => {
@@ -52,15 +54,27 @@ export const AudioPlayer = () => {
 //    autoplay: true,
 // });
 
-   const playingButton = () => {
-    
+  const playingButton = () => {
+    // const AUDIO = new Audio(audioFile);
+    // console.log(audioFile)
+    // if (AUDIO) {
+    //   const playPromis = AUDIO.play();
+
+    //   if (playPromis != null) {
+    //     playPromis
+    //       .then(() => AUDIO.play());
+    //   };
+
+    //   playPromis.then(() => AUDIO.pause());
+    // }
+
     if (isPlaying) {
-      pause(); // приостанавливаем воспроизведение звука
+      audioPlayerRef.current?.pause(); // приостанавливаем воспроизведение звука
       setIsPlaying(false);
     } else {
-      play(); // воспроизводим аудиозапись
+      audioPlayerRef.current?.play(); // воспроизводим аудиозапись
       setIsPlaying(true);
-      console.log('hey')
+      console.log(url)
     }
   };
 
@@ -84,7 +98,7 @@ export const AudioPlayer = () => {
           sound.seek([e.target.value]);
         }}
       /> */}
-      <audio src={url} />
+      <audio src={url} ref={audioPlayerRef} />
       <button className="playButton" onClick={playingButton}>
         play
       </button>
