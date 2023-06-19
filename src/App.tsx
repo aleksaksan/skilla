@@ -1,21 +1,19 @@
-import { useState} from 'react';
-import { DatePicker } from "./components/FilterMenu/DatePicker/DatePicker";
-import { DropDownItem, DropdownDateItems } from "./components/FilterMenu/DropdownMenu/DropDownMock";
-import { DropdownMenu } from "./components/FilterMenu/DropdownMenu/DropdownMenu";
-import { DateFilterMenu } from './components/FilterMenu/DateFilterMenu';
-import { FilterMenu } from './components/FilterMenu/FilterMenu';
-
-
+import { MainMenu } from "./components/Menu/MainMenu";
+import './App.scss';
 
 function App() {
 
 
   return (
     <div className="App">
-      <header>
-        <h1>hello</h1>
-      </header>
-      <FilterMenu />
+      <MainMenu />
+      <div className="">
+        <header>
+          <h1>hello</h1>
+        </header>
+
+
+      </div>
 
 
     </div>
