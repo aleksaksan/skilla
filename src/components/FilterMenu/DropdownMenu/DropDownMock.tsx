@@ -59,5 +59,16 @@ export const DropdownRatingItems: DropDownItem[] = [
   {id: 6, elem: { jsx: <Rating rating={RatingEnum.Badly} isPin={true} /> } },
   {id: 7, elem: { jsx: <Rating rating={RatingEnum.Good} isPin={true} /> } },
   {id: 8, elem: { jsx: <Rating rating={RatingEnum.Well} isPin={true} /> } },
+]
 
+//Mistakes
+export const DropdownMistakesItemes: DropDownItem[] = [
+  {id: 0, elem: { textValue: "Все ошибки" } },
+  {id: 1, elem: { textValue: "Приветствие" } },
+  {id: 2, elem: { textValue: "Имя" } },
+  {id: 3, elem: { textValue: "Цена" } },
+  {id: 4, elem: { textValue: "Скидка" } },
+  {id: 5, elem: { textValue: "Предзаказ" } },
+  {id: 6, elem: { textValue: "Благодарность" } },
+  {id: 7, elem: { textValue: "Стоп слово" } },
 ]

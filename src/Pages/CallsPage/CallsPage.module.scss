@@ -10,4 +10,14 @@
 .filter_raw {
   @include flex-center;
   margin-bottom: 20px;
+  &>div:first-child {
+    &>svg {
+      margin-right: 12px;
+    }
+    color: $text-pale;
+    @include flex-center;
+    &+div {
+      margin-left: auto;
+    }
+  }
 }
