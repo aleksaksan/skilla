@@ -1,16 +1,15 @@
-import { useState } from 'react';
-
-import { DropdownMenu } from './DropdownMenu/DropdownMenu'
+import React, { useState } from 'react'
+import { FilterButton } from './FilterButton/FilterButton';
+import { DropdownMenu } from './DropdownMenu/DropdownMenu';
 import { DropDownItem } from './DropdownMenu/DropDownMock';
 import { useDetectClickOutside } from 'react-detect-click-outside';
 import style from './DropdownMenu.module.scss';
-import { FilterButton } from './FilterButton/FilterButton';
 
-export type FilterMenuProps = {
+export type ProfileMenuProps = {
   items: DropDownItem[],
 }
 
-export const FilterMenu = (props: FilterMenuProps) => {
+export const ProfileMenu = (props: ProfileMenuProps) => {
   const [isOpened, setIsOpened] = useState(true);
   const [dropdownElement, setDropdownElement] = useState(props.items[0]);
 
