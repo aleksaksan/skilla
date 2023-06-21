@@ -6,9 +6,13 @@ import { useDetectClickOutside } from 'react-detect-click-outside';
 import style from '../FilterMenu/DropdownMenu/DropdownMenu.module.scss';
 import { FilterButton } from './FilterButton/FilterButton';
 
-export const FilterMenu = () => {
+export type FilterMenuProps = {
+  items: DropDownItem[],
+}
+
+export const FilterMenu = (props: FilterMenuProps) => {
   const [isOpened, setIsOpened] = useState(true);
-  const [dropdownElement, setDropdownElement] = useState(DropdownCallsItems[0]);
+  const [dropdownElement, setDropdownElement] = useState(props.items[0]);
 
   const getSelectedElementHandler = (elem: DropDownItem) => {
     setDropdownElement(elem)
@@ -27,7 +31,7 @@ export const FilterMenu = () => {
   return (
     <div className={style.wrapper} ref={clickOutside}>
       <FilterButton value={dropdownElement} onClick={toggle} isMenuOpened={isOpened} />
-      <DropdownMenu data={DropdownCallsItems} isOpened={isOpened} closeDropdown={()=>setIsOpened(false)} getSelectedElement={getSelectedElementHandler}/>
+      <DropdownMenu data={props.items} isOpened={isOpened} closeDropdown={()=>setIsOpened(false)} getSelectedElement={getSelectedElementHandler}/>
     </div>
   )
 }

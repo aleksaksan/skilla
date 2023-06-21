@@ -4,6 +4,7 @@ import { CurrentDay } from './CurrentDay';
 import { CallsAnalysis } from './CallsAnalysis';
 import { SvgSearch } from '../SvgIcon/SvgFiles/SvgButtonsIcons/SvgSearch';
 import { FilterMenu } from '../FilterMenu/FilterMenu';
+import { DropdownCallsItems } from '../FilterMenu/DropdownMenu/DropDownMock';
 
 export const Header = () => {
   return (
@@ -15,8 +16,8 @@ export const Header = () => {
         conversionValue={67}
       />
       <SvgSearch />
-      <FilterMenu />
-      <FilterMenu />
+      <FilterMenu items={[{id: 1, elem: {textValue: 'ИП Сидорова Александра Михайловна'}}]} />
+      <FilterMenu items={DropdownCallsItems} />
     </header>
   )
 }
