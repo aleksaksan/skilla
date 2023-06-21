@@ -2,6 +2,8 @@ import React from 'react';
 import style from './Header.module.scss';
 import { CurrentDay } from './CurrentDay';
 import { CallsAnalysis } from './CallsAnalysis';
+import { SvgSearch } from '../SvgIcon/SvgFiles/SvgButtonsIcons/SvgSearch';
+import { FilterMenu } from '../FilterMenu/FilterMenu';
 
 export const Header = () => {
   return (
@@ -12,6 +14,9 @@ export const Header = () => {
         qualityValue={40}
         conversionValue={67}
       />
+      <SvgSearch />
+      <FilterMenu />
+      <FilterMenu />
     </header>
   )
 }

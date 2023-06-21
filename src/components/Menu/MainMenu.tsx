@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './MainMenu.module.scss';
-import { SvgLogo } from '../SvgIcon/SvgFiles/SvgLogo';
+import { SvgLogo } from '../SvgIcon/SvgFiles/SvgMenu/SvgLogo';
 import { SvgResults } from '../SvgIcon/SvgFiles/SvgMenu/SvgNavIcons/SvgResults';
 import { SvgOrders } from '../SvgIcon/SvgFiles/SvgMenu/SvgNavIcons/SvgOrders';
 import { SvgMessage } from '../SvgIcon/SvgFiles/SvgMenu/SvgNavIcons/SvgMessage';
