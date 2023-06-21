@@ -10,7 +10,7 @@ export type ProfileMenuProps = {
 }
 
 export const ProfileMenu = (props: ProfileMenuProps) => {
-  const [isOpened, setIsOpened] = useState(true);
+  const [isOpened, setIsOpened] = useState(false);
   const [dropdownElement, setDropdownElement] = useState(props.items[0]);
 
   const getSelectedElementHandler = (elem: DropDownItem) => {

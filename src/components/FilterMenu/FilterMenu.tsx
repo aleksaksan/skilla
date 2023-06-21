@@ -11,15 +11,16 @@ export type FilterMenuProps = {
 }
 
 export const FilterMenu = (props: FilterMenuProps) => {
-  const [isOpened, setIsOpened] = useState(true);
+  const [isOpened, setIsOpened] = useState(false);
   const [dropdownElement, setDropdownElement] = useState(props.items[0]);
 
   const getSelectedElementHandler = (elem: DropDownItem) => {
-    setDropdownElement(elem)
+    setDropdownElement(elem);
+    closeDropdown();
   }
 
   const toggle = () => {
-    setIsOpened(!isOpened)
+    setIsOpened(!isOpened);
   };
 
   const closeDropdown = () => {
@@ -31,7 +32,7 @@ export const FilterMenu = (props: FilterMenuProps) => {
   return (
     <div className={style.wrapper} ref={clickOutside}>
       <FilterButton value={dropdownElement} onClick={toggle} isMenuOpened={isOpened} />
-      <DropdownMenu data={props.items} isOpened={isOpened} closeDropdown={()=>setIsOpened(false)} getSelectedElement={getSelectedElementHandler}/>
+      <DropdownMenu data={props.items} isOpened={isOpened} closeDropdown={closeDropdown} getSelectedElement={getSelectedElementHandler}/>
     </div>
   )
 }

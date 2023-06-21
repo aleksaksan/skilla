@@ -6,7 +6,7 @@ import { useDetectClickOutside } from 'react-detect-click-outside';
 import style from './DropdownMenu.module.scss';
 
 export const DateFilterMenu = () => {
-  const [isOpened, setIsOpened] = useState(true);
+  const [isOpened, setIsOpened] = useState(false);
   const [dropdownElement, setDropdownElement] = useState(DropdownDateItems[0]);
 
   const getSelectedElementHandler = (elem: DropDownItem) => {
@@ -25,7 +25,7 @@ export const DateFilterMenu = () => {
 
   return (
     <div className={style.wrapper} ref={clickOutside}>
-      <DatePicker value={dropdownElement.elem.textValue} onClick={toggle} />
+      <DatePicker value={dropdownElement.elem.textValue!} onClick={toggle} />
       <DropdownMenu data={DropdownDateItems} isOpened={isOpened} closeDropdown={()=>setIsOpened(false)} getSelectedElement={getSelectedElementHandler}/>
     </div>
   )
