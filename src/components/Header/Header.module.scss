@@ -1,5 +1,12 @@
 @import '../../style/colors';
 
+.header {
+  background-color: $common-white;
+  display: flex;
+  align-items: center;
+  height: 64px;
+}
+
 .date {
   color: $text-pale;
   font-size: 15px;
@@ -96,3 +103,4 @@
   display: flex;
   white-space: nowrap;
 }
+

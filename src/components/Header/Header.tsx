@@ -5,7 +5,7 @@ import { CallsAnalysis } from './CallsAnalysis';
 
 export const Header = () => {
   return (
-    <header className=''>
+    <header className={`${style.header} container`}>
       <CurrentDay /> 
       <CallsAnalysis
         newCalls={{value: 20, maxValue: 30}} 

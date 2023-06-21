@@ -14,7 +14,7 @@ const getMounth = (date: Date) => {
 };
 
 const getDay = (date: Date) => {
-  return date.getDay();
+  return date.getUTCDate();
 };
 
 const getDate = () => {
