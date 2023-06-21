@@ -12,7 +12,7 @@ export type DropdownMenuProps = {
 
 
 export const DropdownMenu = forwardRef((props: DropdownMenuProps, ref: React.ForwardedRef<HTMLDivElement>) => {
-  const [activeId, setActiveId] = useState(1);
+  const [activeId, setActiveId] = useState(0);
   const onElementClick = (elem: DropDownItem) => {
     props.getSelectedElement?.(elem);
     setActiveId(Number(elem.id));

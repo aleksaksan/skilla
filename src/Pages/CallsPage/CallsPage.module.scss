@@ -1,0 +1,13 @@
+@import '../../style/colors';
+@import '../../style/common';
+
+.balance_raw {
+  @include flex-center;
+  margin: 30px 0;
+  justify-content: end;
+}
+
+.filter_raw {
+  @include flex-center;
+  margin-bottom: 20px;
+}
