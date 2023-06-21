@@ -53,8 +53,11 @@ export const DropdownRatingItems: DropDownItem[] = [
   {id: 0, elem: { textValue: "Все оценки" } },
   {id: 1, elem: { textValue: "Распознать" } },
   {id: 2, elem: { textValue: "Скрипт не использован" } },
-  {id: 3, elem: { jsx: <Rating rating={RatingEnum.Badly} /> } },
-  {id: 4, elem: { jsx: <Rating rating={RatingEnum.Good} /> } },
-  {id: 5, elem: { jsx: <Rating rating={RatingEnum.Well} /> } },
+  {id: 3, elem: { jsx: <Rating rating={RatingEnum.Badly} isPin={false} /> } },
+  {id: 4, elem: { jsx: <Rating rating={RatingEnum.Good} isPin={false} /> } },
+  {id: 5, elem: { jsx: <Rating rating={RatingEnum.Well} isPin={false} /> } },
+  {id: 6, elem: { jsx: <Rating rating={RatingEnum.Badly} isPin={true} /> } },
+  {id: 7, elem: { jsx: <Rating rating={RatingEnum.Good} isPin={true} /> } },
+  {id: 8, elem: { jsx: <Rating rating={RatingEnum.Well} isPin={true} /> } },
 
 ]

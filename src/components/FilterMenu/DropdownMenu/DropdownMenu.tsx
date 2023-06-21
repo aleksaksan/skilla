@@ -28,6 +28,7 @@ export const DropdownMenu = forwardRef((props: DropdownMenuProps, ref: React.For
             onClick={()=>onElementClick(item)}
           >
             {item.elem.textValue}
+            {item.elem.jsx && item.elem.jsx}
           </li>
         ))}
       </ul>
