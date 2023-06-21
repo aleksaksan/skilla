@@ -105,3 +105,18 @@
   white-space: nowrap;
 }
 
+.profile {
+  display: flex;
+  align-items: center;
+  margin-left: 47px;
+
+  &>svg {
+    fill: $text-pale;
+    margin-left: 10px;
+  }
+}
+
+.search {
+  margin-left: auto;
+  margin-right: 56px;
+}

@@ -1,5 +1,5 @@
 import { forwardRef, useState } from 'react';
-import style from './DropdownMenu.module.scss';
+import style from '../DropdownMenu.module.scss';
 import { DropDownItem } from './DropDownMock';
 
 export type DropdownMenuProps = {

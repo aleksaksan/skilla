@@ -3,7 +3,7 @@ import { DatePicker } from './DatePicker/DatePicker'
 import { DropdownMenu } from './DropdownMenu/DropdownMenu'
 import { DropDownItem, DropdownDateItems } from './DropdownMenu/DropDownMock';
 import { useDetectClickOutside } from 'react-detect-click-outside';
-import style from '../FilterMenu/DropdownMenu/DropdownMenu.module.scss';
+import style from './DropdownMenu.module.scss';
 
 export const DateFilterMenu = () => {
   const [isOpened, setIsOpened] = useState(true);

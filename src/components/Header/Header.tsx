@@ -4,7 +4,8 @@ import { CurrentDay } from './CurrentDay';
 import { CallsAnalysis } from './CallsAnalysis';
 import { SvgSearch } from '../SvgIcon/SvgFiles/SvgButtonsIcons/SvgSearch';
 import { FilterMenu } from '../FilterMenu/FilterMenu';
-import { DropdownCallsItems } from '../FilterMenu/DropdownMenu/DropDownMock';
+import photo from '../../img/img.png';
+import { SvgChevron } from '../SvgIcon/SvgFiles/SvgButtonsIcons/SvgChevron';
 
 export const Header = () => {
   return (
@@ -15,9 +16,14 @@ export const Header = () => {
         qualityValue={40}
         conversionValue={67}
       />
-      <SvgSearch />
+      <div className={style.search}>
+        <SvgSearch />
+      </div>
       <FilterMenu items={[{id: 1, elem: {textValue: 'ИП Сидорова Александра Михайловна'}}]} />
-      <FilterMenu items={DropdownCallsItems} />
+      <div className={style.profile}>
+        <img src={photo} alt='img' />
+        <SvgChevron />
+      </div>
     </header>
   )
 }
