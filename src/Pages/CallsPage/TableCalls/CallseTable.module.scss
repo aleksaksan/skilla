@@ -7,16 +7,22 @@
   padding: 24px 40px 57px 12px;
 }
 
-.header {
-  color: $text-pale;
-  height: 60px;
-}
 
 .grid {
+  &.header {
+    color: $text-pale;
+    height: 60px;
+  }
+
   display: grid;
   grid-template-columns: 28px 44px 89px 128px minmax(246px, 326px) minmax(198px, 214px) minmax(134px, 198px) 352px;
   justify-content: start;
+  align-items: center;
   &>*:last-child {
     justify-self: end;
   }
+}
+
+.source {
+  color: $text-pale;
 }

@@ -25,7 +25,7 @@ export const CallseTable = () => {
         <div>19:00</div>
         <div><img src={employe} alt='avatar'/></div>
         <div>+7 (987) 567-17-12</div>
-        <div>Rabota.ru</div>
+        <div className={style.source}>Rabota.ru</div>
         <div><Rating rating={RatingEnum.Well} isPin={true} /> <Rating rating={RatingEnum.Well} isPin={false} /> </div>
         <div>12:08</div>
       </div>
