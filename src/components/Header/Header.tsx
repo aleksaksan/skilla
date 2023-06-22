@@ -4,7 +4,7 @@ import { CurrentDay } from './CurrentDay';
 import { CallsAnalysis } from './CallsAnalysis';
 import { SvgSearch } from '../SvgIcon/SvgFiles/SvgButtonsIcons/SvgSearch';
 import { FilterMenu } from '../FilterMenu/FilterMenu';
-import photo from '../../img/img.png';
+import photo from '../../assets/img/img.png';
 import { SvgChevron } from '../SvgIcon/SvgFiles/SvgButtonsIcons/SvgChevron';
 
 export const Header = () => {
