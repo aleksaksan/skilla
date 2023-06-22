@@ -1,16 +1,40 @@
-import React from 'react'
+import { useState } from 'react';
 import { Checkbox } from '../../../components/Checkbox/Checkbox';
-import style from './CallseTable.module.scss';
+import style from './CallsTable.module.scss';
 import { SvgInOutCall } from '../../../components/SvgIcon/SvgInOutCall';
 import employe from '../../../assets/img/avatar.png';
 import { Rating } from '../../../components/Rating/Rating';
 import { RatingEnum } from '../../../shared/enums/RatingEnum';
 
-export const CallseTable = () => {
+export type CallsTableProps = [
+  
+]
+
+export const CallsTable = () => {
+  const [isAllChecked, setIsAllChecked] = useState(false);
+  const [isHeadersCheckbVisible, setIsHeadersCheckbVisible] = useState(false);
+  const [isCheckedArr, setIsCheckedArr] = useState<boolean[]>([]);
+
+
+
+  const checkAllHandler = () => {
+    console.log("clicl")
+    setIsAllChecked(!isAllChecked);
+  };
+
+  const heaersCheckboxVisibleHandler = () => {
+    setIsHeadersCheckbVisible(true);
+  };
+  const heaersCheckboxInisibleHandler = () => {
+    if (!isAllChecked) {
+      setIsHeadersCheckbVisible(false);
+    }
+  }
+
   return (
     <div className={style.table_wrapper}>
-      <div className={`${style.header} ${style.grid}`} onMouseOver={()=>{}}>
-        <div><Checkbox checked={false} isVisible={true} onClick={()=>{}} /></div>
+      <div className={`${style.header} ${style.grid}`} onMouseOver={heaersCheckboxVisibleHandler} onMouseLeave={heaersCheckboxInisibleHandler}>
+        <div><Checkbox checked={isAllChecked} isVisible={isHeadersCheckbVisible} onClick={checkAllHandler} /></div>
         <div>Тип</div>
         <div>Время</div>
         <div>Сотрудник</div>
@@ -21,7 +45,7 @@ export const CallseTable = () => {
       </div>
       <div className={style.grid} onMouseOver={()=>{}}>
         <div><Checkbox checked={false} isVisible={true} onClick={()=>{}} /></div>
-        <div><SvgInOutCall callsType='incoming' /></div>
+        <div><SvgInOutCall callsType='incoming' missed={false} /></div>
         <div>19:00</div>
         <div><img src={employe} alt='avatar'/></div>
         <div>+7 (987) 567-17-12</div>

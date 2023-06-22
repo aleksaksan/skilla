@@ -10,7 +10,7 @@ import {
   DropdownRatingItems,
   DropdownSourcesItemes,
   DropdownTypeItems } from '../../components/FilterMenu/DropdownMenu/DropDownMock';
-import { CallseTable } from './TableCalls/CallseTable';
+import { CallsTable } from './TableCalls/CallsTable';
 import axios from 'axios';
 
 export const CallsPage = () => {
@@ -29,7 +29,7 @@ export const CallsPage = () => {
         date_end: '2023-06-22',
       }
     }).then(respone => console.log(respone))
-  }, [])
+  }, []);
   
 
   return (
@@ -50,7 +50,7 @@ export const CallsPage = () => {
         <FilterMenu items={DropdownRatingItems} /> 
         <FilterMenu items={DropdownMistakesItemes} />
       </div>
-      <CallseTable />
+      <CallsTable />
     </div>
   )
 }
