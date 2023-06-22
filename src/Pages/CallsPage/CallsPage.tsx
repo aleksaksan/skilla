@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import style from './CallsPage.module.scss'
 import { DateFilterMenu } from '../../components/FilterMenu/DateFilterMenu';
 import { SvgSearch } from '../../components/SvgIcon/SvgFiles/SvgButtonsIcons/SvgSearch';
@@ -11,8 +11,27 @@ import {
   DropdownSourcesItemes,
   DropdownTypeItems } from '../../components/FilterMenu/DropdownMenu/DropDownMock';
 import { CallseTable } from './TableCalls/CallseTable';
+import axios from 'axios';
 
 export const CallsPage = () => {
+  
+  useEffect(() => {
+    axios({
+      baseURL: `https://api.skilla.ru/mango/getList`,
+      method: `post`,
+      headers: {
+        Authorization: 'Bearer testtoken',
+        'Content-Type': 'application/json',
+      },
+      params: {
+        limit: 10,
+        date_start: '2023-06-19',
+        date_end: '2023-06-22',
+      }
+    }).then(respone => console.log(respone))
+  }, [])
+  
+
   return (
     <div className='container'>
       <div className={style.balance_raw}>
