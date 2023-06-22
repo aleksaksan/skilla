@@ -5,6 +5,7 @@ import { SvgInOutCall } from '../../../components/SvgIcon/SvgInOutCall';
 import employe from '../../../assets/img/avatar.png';
 import { Rating } from '../../../components/Rating/Rating';
 import { RatingEnum } from '../../../shared/enums/RatingEnum';
+import { CallsTableRow } from './CallsTableRaw';
 
 export type CallsTableProps = [
   
@@ -18,7 +19,6 @@ export const CallsTable = () => {
 
 
   const checkAllHandler = () => {
-    console.log("clicl")
     setIsAllChecked(!isAllChecked);
   };
 
@@ -29,7 +29,7 @@ export const CallsTable = () => {
     if (!isAllChecked) {
       setIsHeadersCheckbVisible(false);
     }
-  }
+  };
 
   return (
     <div className={style.table_wrapper}>
@@ -43,16 +43,19 @@ export const CallsTable = () => {
         <div>Оценка</div>
         <div>Длительность</div>
       </div>
-      <div className={style.grid} onMouseOver={()=>{}}>
-        <div><Checkbox checked={false} isVisible={true} onClick={()=>{}} /></div>
-        <div><SvgInOutCall callsType='incoming' missed={false} /></div>
-        <div>19:00</div>
-        <div><img src={employe} alt='avatar'/></div>
-        <div>+7 (987) 567-17-12</div>
-        <div className={style.source}>Rabota.ru</div>
-        <div><Rating rating={RatingEnum.Well} isPin={true} /> <Rating rating={RatingEnum.Well} isPin={false} /> </div>
-        <div>12:08</div>
-      </div>
+      <CallsTableRow
+        isChecked={false}
+        onCheckboxClick={()=>{}}
+        avatar={employe}
+        callsDuration='12:06'
+        callsTime='19:00'
+        isCallIncoming={true}
+        isCallMissed={false}
+        onMouseOver={()=>{}}
+        isMouseOver={true}
+        phoneNumber='+7 (987) 567-17-12'
+        source='Rabota.ru'
+       />
     </div>
   )
 }
