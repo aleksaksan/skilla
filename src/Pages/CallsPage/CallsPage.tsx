@@ -3,7 +3,14 @@ import style from './CallsPage.module.scss'
 import { DateFilterMenu } from '../../components/FilterMenu/DateFilterMenu';
 import { SvgSearch } from '../../components/SvgIcon/SvgFiles/SvgButtonsIcons/SvgSearch';
 import { FilterMenu } from '../../components/FilterMenu/FilterMenu';
-import { DropdownCallsItems, DropdownEmployesItems, DropdownMistakesItemes, DropdownRatingItems, DropdownSourcesItemes, DropdownTypeItems } from '../../components/FilterMenu/DropdownMenu/DropDownMock';
+import {
+  DropdownCallsItems,
+  DropdownEmployesItems,
+  DropdownMistakesItemes,
+  DropdownRatingItems,
+  DropdownSourcesItemes,
+  DropdownTypeItems } from '../../components/FilterMenu/DropdownMenu/DropDownMock';
+import { CallseTable } from './TableCalls/CallseTable';
 
 export const CallsPage = () => {
   return (
@@ -24,6 +31,7 @@ export const CallsPage = () => {
         <FilterMenu items={DropdownRatingItems} /> 
         <FilterMenu items={DropdownMistakesItemes} />
       </div>
+      <CallseTable />
     </div>
   )
 }
