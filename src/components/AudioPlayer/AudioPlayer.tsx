@@ -3,8 +3,15 @@ import style from './AudioPlayer.module.scss';
 import audioFile from '../../assets/mp3/testSong.mp3';
 import { SvgDownload } from "../SvgIcon/SvgFiles/SvgPlayer/SvgDownload";
 import { SvgCross } from "../SvgIcon/SvgFiles/SvgButtonsIcons/SvgCross";
+import axios from "axios";
 
-export const AudioPlayer = () => {
+export type AudioPlayerProps = {
+  callsDuration: string,
+  record?: string,
+  partnershipId: string,
+}
+
+export const AudioPlayer = (props: AudioPlayerProps) => {
   const audioPlayerRef = useRef<HTMLAudioElement>(null);
   const [url, setUrl] = useState('')
   const [isPlaying, setIsPlaying] = useState(false);
@@ -19,8 +26,8 @@ export const AudioPlayer = () => {
   // });
 
   const [remaningTime, setRemaningTime] = useState({
-    min: '0',
-    sec: '0',
+    min: props.callsDuration.split(':')[0],
+    sec: props.callsDuration.split(':')[1],
   });
 
 
@@ -64,10 +71,35 @@ export const AudioPlayer = () => {
     const sec = Math.floor((duration-currentTime) % 60) < 10 ?
       `0${Math.floor((duration-currentTime) % 60)}` :
       Math.floor((duration-currentTime) % 60).toString();
-    setRemaningTime({
-      min,
-      sec,
-    });
+
+    if (currentTime !== duration) {
+      setRemaningTime({
+        min,
+        sec,
+      });
+    } else {
+      setRemaningTime({
+        min: props.callsDuration.split(':')[0],
+        sec: props.callsDuration.split(':')[1],
+      })
+    }
+  }
+
+  const getAudio = () => {
+    axios({
+      method: 'post',
+      baseURL: `https://api.skilla.ru/mango/getRecord`,
+      params: {
+        record: props.record,
+        partnership_id: props.partnershipId,
+      },
+      headers: {
+        Authorization: 'Bearer testtoken',
+        'Content-Type': 'audio/mpeg, audio/x-mpeg, audio/x-mpeg-3, audio/mpeg3',
+        'Content-Transfer-Encoding': 'binary',
+        'Content-Disposition': `filename="record.mp3"`
+      },
+    }).then(response=> console.log(response))
   }
 
   return (
@@ -84,7 +116,9 @@ export const AudioPlayer = () => {
         max={duration}
         value={currentTime}
       />
-      <SvgDownload />
+      <div className={style.wrapper} onClick={getAudio} >
+        <SvgDownload />
+      </div>
       {isSaved && <SvgCross />}
       <audio
         ref={audioPlayerRef}

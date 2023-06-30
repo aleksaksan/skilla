@@ -4,7 +4,7 @@ export enum StatusEnum {
     }
 
 export interface CallItemResponse {
-    partnership_id: number,             //???
+    partnership_id: string,             //???
     partner_data: PartnerData,          //mh 
     date: string,                       //mh    дата
     date_notime: string,                //mh    дата без время

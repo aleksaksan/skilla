@@ -21,6 +21,8 @@ export type CallsTableRowProps = {
   id: string,
   isFromSite?: boolean,
   errors?: string [],
+  record?: string,
+  partnershipId: string,
 }
 
 export const CallsTableRow = (props: CallsTableRowProps) => {
@@ -54,7 +56,7 @@ export const CallsTableRow = (props: CallsTableRowProps) => {
         {!props.isCallMissed && props.errors && <TableErrors errors={props.errors} />}
       </div>
       <div>{props.callsDuration}
-        <AudioPlayer />
+        {!props.isCallMissed && <AudioPlayer callsDuration={props.callsDuration} record={props.record} partnershipId={props.partnershipId} />}
       </div>
     </div>
   )

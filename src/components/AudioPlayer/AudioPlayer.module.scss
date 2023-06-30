@@ -7,11 +7,10 @@
   height: 48px;
   background-color: #EAF0FA;
   position: relative;
-  // padding-left: 19px;
   display: flex;
   align-items: center;
 
-  &>svg {
+  & svg {
     fill: $primary-grey;
     margin-left: 12px;
     cursor: pointer;
@@ -19,6 +18,11 @@
       fill: $text-blue;
     }
   }
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
 }
 
 .time {
