@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Checkbox } from '../../../components/Checkbox/Checkbox'
 import { SvgInOutCall } from '../../../components/SvgIcon/SvgInOutCall'
 import { Rating } from '../../../components/Rating/Rating'
@@ -21,7 +21,14 @@ export type CallsTableRowProps = {
 }
 
 export const CallsTableRow = (props: CallsTableRowProps) => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(props.isChecked);
+
+  useEffect(()=>{
+    if (!props.isChecked) {
+      setIsVisible(false);
+    }
+  },[props.isChecked]);
+
   const onMouseOverHandler = () => {
     setIsVisible(true);
   };
@@ -33,7 +40,7 @@ export const CallsTableRow = (props: CallsTableRowProps) => {
 
   return (
     <div className={style.grid} onMouseOver={onMouseOverHandler} onMouseLeave={onMouseLeaveHandler}>
-      <div className={style.centred}><Checkbox checked={props.isChecked} isVisible={isVisible} onClick={props.onCheckboxClick} /></div>
+      <div className={style.centred}><Checkbox checked={props.isChecked} isVisible={isVisible || props.isChecked} onClick={props.onCheckboxClick} /></div>
       <div className={style.centred}><SvgInOutCall callsType={props.isCallIncoming ? 'incoming' : 'outcoming'} missed={props.isCallMissed} /></div>
       <div className={style.time}>{props.callsTime}</div>
       <div className={style.avatar}><img src={props.avatar} alt='avatar' /></div>

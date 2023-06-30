@@ -16,11 +16,24 @@ import { CallItemResponse, CallItems } from '../../models/CallItemResponse';
 
 export const CallsPage = () => {
   const [modifiedResponse, setModifiedResponse] = useState<CallItems[]>([]);
-
+  const [isAllChecked, setIsAllChecked] = useState(false);
+  
   const onCheckboxChanged = (id: string) => {
     const changedValue = modifiedResponse.find(item => item.id === id);
     changedValue!.isChecked = !changedValue!.isChecked;
     setModifiedResponse([...modifiedResponse]);
+  };
+
+  const onCheckAllHandler = () => {
+    // console.log('onCheckAllHandler')
+    // if (isAllChecked)
+    setIsAllChecked(!isAllChecked);
+    setModifiedResponse(modifiedResponse.map((item)=>(
+      {
+        ...item,
+        isChecked: !isAllChecked,
+      }
+    )));
   };
   
   useEffect(() => {
@@ -32,7 +45,6 @@ export const CallsPage = () => {
         'Content-Type': 'application/json',
       },
       params: {
-        // limit: 10,
         date_start: '2023-06-19',
         date_end: '2023-06-25',
       },
@@ -70,7 +82,7 @@ export const CallsPage = () => {
         <FilterMenu items={DropdownRatingItems} /> 
         <FilterMenu items={DropdownMistakesItemes} />
       </div>
-      <CallsTable rowData={modifiedResponse} onCheckboxChanged={onCheckboxChanged}/>
+      <CallsTable rowData={modifiedResponse} onCheckboxChanged={onCheckboxChanged} isAllChecked={isAllChecked} onCheckAll={onCheckAllHandler}/>
     </div>
   )
 }

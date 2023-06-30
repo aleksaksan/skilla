@@ -24,24 +24,18 @@ const getPhoneNumber = (number: string) => {
 export type CallsTableProps = {
   rowData: CallItems[],
   onCheckboxChanged: (id: string) => void;
+  isAllChecked: boolean,
+  onCheckAll: () => void,
 }
 
 export const CallsTable = (props: CallsTableProps) => {
-  const [isAllChecked, setIsAllChecked] = useState(false);
   const [isHeadersCheckbVisible, setIsHeadersCheckbVisible] = useState(false);
-  const [isCheckedArr, setIsCheckedArr] = useState<boolean[]>([]);
-
-
-
-  const checkAllHandler = () => {
-    setIsAllChecked(!isAllChecked);
-  };
 
   const heaersCheckboxVisibleHandler = () => {
     setIsHeadersCheckbVisible(true);
   };
   const heaersCheckboxInisibleHandler = () => {
-    if (!isAllChecked) {
+    if (!props.isAllChecked) {
       setIsHeadersCheckbVisible(false);
     }
   };
@@ -49,7 +43,7 @@ export const CallsTable = (props: CallsTableProps) => {
   return (
     <div className={style.table_wrapper}>
       <div className={`${style.header} ${style.grid}`} onMouseOver={heaersCheckboxVisibleHandler} onMouseLeave={heaersCheckboxInisibleHandler}>
-        <div><Checkbox checked={isAllChecked} isVisible={isHeadersCheckbVisible} onClick={checkAllHandler} /></div>
+        <div><Checkbox checked={props.isAllChecked} isVisible={isHeadersCheckbVisible} onClick={props.onCheckAll} /></div>
         <div>Тип</div>
         <div>Время</div>
         <div>Сотрудник</div>
