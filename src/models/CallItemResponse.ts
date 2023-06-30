@@ -31,7 +31,6 @@ export interface CallItemResponse {
     person_id: number,                  //mh
     person_name: string,                //mh
     person_surname: string,             //mh
-    
 }
 
 export interface CallItems extends CallItemResponse {
