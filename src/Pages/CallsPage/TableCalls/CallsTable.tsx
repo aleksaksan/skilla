@@ -65,6 +65,7 @@ export const CallsTable = (props: CallsTableProps) => {
         contact='+7 (987) 567-17-12'
         source='Санкт-Петербург источник в три строки, кто-то так пишет, ну ладно, но некрасиво'
         isFromSite={true}
+        errors={['1','2','3']}
        />
       <CallsTableRow
         id={"1"}
@@ -78,6 +79,7 @@ export const CallsTable = (props: CallsTableProps) => {
         contact='Константиний Константинопольский ООО «Фестивальный эффект»'
         source='Rabota.ru'
         isFromSite={true}
+        errors={['1','2']}
        />
        {props.rowData.map(item=>(
         <CallsTableRow
@@ -93,6 +95,7 @@ export const CallsTable = (props: CallsTableProps) => {
           contact={`${item.partner_data.name} ${getPhoneNumber(item.partner_data.phone)}`}
           source={item.source}
           isFromSite={item.isFromSite}
+          errors={item.errors}
         />
        ))}
     </div>
