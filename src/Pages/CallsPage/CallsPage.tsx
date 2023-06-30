@@ -25,8 +25,6 @@ export const CallsPage = () => {
   };
 
   const onCheckAllHandler = () => {
-    // console.log('onCheckAllHandler')
-    // if (isAllChecked)
     setIsAllChecked(!isAllChecked);
     setModifiedResponse(modifiedResponse.map((item)=>(
       {
