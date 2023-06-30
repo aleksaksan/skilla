@@ -9,94 +9,90 @@ export const AudioPlayer = () => {
   const [url, setUrl] = useState('')
   const [isPlaying, setIsPlaying] = useState(false);
   const [isSaved, setIsSaved] = useState(true);
-  const [timeDuration, setTimeDuration] = useState({
-      min: 0,
-      sec: 0,
-    });
-  const [currTime, setCurrTime] = useState({
-    min: 0,
-    sec: 0,
-  }); // текущее положение звука в минутах и секундах
+
+  const [duration, setDuration] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+
+  // const [timeDuration, setTimeDuration] = useState({
+  //     min: 0,
+  //     sec: 0,
+  // });
+
+  const [remaningTime, setRemaningTime] = useState({
+    min: '0',
+    sec: '0',
+  });
 
 
   useEffect(() => {
     setUrl(audioFile);
-  }, [])
+  }, []);
+
+  const onChange = (e: any) => {
+    const audio = audioPlayerRef.current;
+    audio!.currentTime =  e.target.value;
+    setCurrentTime(e.target.value)
+  }
 
   // useEffect(() => {
-  //   const sec = duration! / 1000;
-  //   const min = Math.floor(sec / 60);
-  //   const secRemain = Math.floor(sec % 60);
+  //   const sec = Math.floor(duration % 60);
+  //   const min = Math.floor(duration / 60);
+
   //   setTimeDuration({
   //     min: min,
-  //     sec: secRemain
+  //     sec: sec
   //   });
   // }, [duration]);
 
-  // useEffect(() => {
-  
-  // const interval = setInterval(() => {
-  //   if (sound) {
-  //     setSeconds(sound.seek([])); // устанавливаем состояние с текущим значением в секундах
-  //     const min = Math.floor(sound.seek([]) / 60);
-  //     const sec = Math.floor(sound.seek([]) % 60);
-  //     setCurrTime({
-  //       min,
-  //       sec,
-  //     });
-  //   }
-  //   }, 1000);
-  //   return () => clearInterval(interval);
-  // }, [sound]);
+  const play = () => {
+    const audio = audioPlayerRef.current;
 
-  const playingButton = () => {
-    // const AUDIO = new Audio(audioFile);
-    // console.log(audioFile)
-    // if (AUDIO) {
-    //   const playPromis = AUDIO.play();
-
-    //   if (playPromis != null) {
-    //     playPromis
-    //       .then(() => AUDIO.play());
-    //   };
-
-    //   playPromis.then(() => AUDIO.pause());
-    // }
+    if (!isPlaying) {
+      setIsPlaying(true)
+      audio!.play()
+    }
 
     if (isPlaying) {
-      audioPlayerRef.current?.pause(); // приостанавливаем воспроизведение звука
-      setIsPlaying(false);
-    } else {
-      audioPlayerRef.current?.play(); // воспроизводим аудиозапись
-      setIsPlaying(true);
-      console.log(url)
+      setIsPlaying(false)
+      audio!.pause()
     }
-  };
+  }
+
+  const onTimeUpdateHandler = (e: any) => {
+    setCurrentTime(e.currentTarget.currentTime);
+    const min = Math.floor((duration-currentTime) / 60).toString();
+    const sec = Math.floor((duration-currentTime) % 60) < 10 ?
+      `0${Math.floor((duration-currentTime) % 60)}` :
+      Math.floor((duration-currentTime) % 60).toString();
+    setRemaningTime({
+      min,
+      sec,
+    });
+  }
 
   return (
     <div className={style.audioplayer}>
       <div className={style.time}>
-        {timeDuration.min}:{timeDuration.sec}
-        {/* <p>
-          {currTime.min}:{currTime.sec}
-        </p> */}
-        
+        {remaningTime.min}:{remaningTime.sec}
       </div>
-      <button className={isPlaying? `${style.playbtn} ${style.pause}` : `${style.playbtn}`} onClick={playingButton}></button>
+      <button className={isPlaying? `${style.playbtn} ${style.pause}` : `${style.playbtn}`} onClick={play}></button>
       <input
         className={style.input}
+        onChange={onChange}
         type="range"
         min="0"
-        // max={duration! / 1000}
-        // value={seconds}
-        // className="timeline"
-        // onChange={(e) => {
-        //   sound.seek([e.target.value]);
-        // }}
+        max={duration}
+        value={currentTime}
       />
       <SvgDownload />
       {isSaved && <SvgCross />}
-      <audio src={url} ref={audioPlayerRef} />
+      <audio
+        ref={audioPlayerRef}
+        src={url} 
+        onTimeUpdate={onTimeUpdateHandler}
+        onLoadedData={(e) => setDuration(e.currentTarget.duration)}
+        onEnded={()=>setIsPlaying(false)}
+        />
       
     </div>
   )
