@@ -1,0 +1,42 @@
+@import '../../../style/colors';
+.btn {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  color: $common-white;
+  height: 52px;
+  width: 200px;
+  background-color: #005FF8;
+  border-radius: 4px;
+  margin: 0 auto;
+  margin-top: 32px;
+  padding: 13px 0 15px;
+  font-family: 'SF Pro Display';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+
+  &:first-of-type {
+    margin-top: 52px;
+    &>div {
+      margin-left: 24px;
+      margin-right: 17px;
+    }
+  }
+
+  &:nth-child(4) {
+    &>div {
+      margin-left: 64px;
+      margin-right: 34px;
+    }
+  }
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &>svg {
+
+  }
+}

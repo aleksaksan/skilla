@@ -1,0 +1,20 @@
+@import '../../../style/colors';
+
+.error {
+  color: $primary-red;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 100%;
+}
+
+.recognizing {
+  outline: none;
+  color: $primary-blue;
+  border: 1px solid $primary-blue;
+  border-radius: 4px;
+  padding: 9px 24px 11px;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 100%;
+  cursor: pointer;
+}

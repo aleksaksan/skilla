@@ -1,26 +1,24 @@
-import { useState } from 'react';
-
-import { DropdownMenu } from './DropdownMenu/DropdownMenu'
+import React, { useState } from 'react'
+import { FilterButton } from './FilterButton/FilterButton';
+import { DropdownMenu } from './DropdownMenu/DropdownMenu';
 import { DropDownItem } from './DropdownMenu/DropDownMock';
 import { useDetectClickOutside } from 'react-detect-click-outside';
 import style from './DropdownMenu.module.scss';
-import { FilterButton } from './FilterButton/FilterButton';
 
-export type FilterMenuProps = {
+export type ProfileMenuProps = {
   items: DropDownItem[],
 }
 
-export const FilterMenu = (props: FilterMenuProps) => {
+export const ProfileMenu = (props: ProfileMenuProps) => {
   const [isOpened, setIsOpened] = useState(false);
   const [dropdownElement, setDropdownElement] = useState(props.items[0]);
 
   const getSelectedElementHandler = (elem: DropDownItem) => {
-    setDropdownElement(elem);
-    closeDropdown();
+    setDropdownElement(elem)
   }
 
   const toggle = () => {
-    setIsOpened(!isOpened);
+    setIsOpened(!isOpened)
   };
 
   const closeDropdown = () => {
@@ -32,7 +30,7 @@ export const FilterMenu = (props: FilterMenuProps) => {
   return (
     <div className={style.wrapper} ref={clickOutside}>
       <FilterButton value={dropdownElement} onClick={toggle} isMenuOpened={isOpened} />
-      <DropdownMenu data={props.items} isOpened={isOpened} closeDropdown={closeDropdown} getSelectedElement={getSelectedElementHandler}/>
+      <DropdownMenu data={props.items} isOpened={isOpened} closeDropdown={()=>setIsOpened(false)} getSelectedElement={getSelectedElementHandler}/>
     </div>
   )
 }
