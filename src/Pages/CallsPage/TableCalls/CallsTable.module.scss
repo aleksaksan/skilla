@@ -95,3 +95,7 @@
     color: $text-primary;
   }
 }
+
+.centred {
+  @include space-between-center;
+}

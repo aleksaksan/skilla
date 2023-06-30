@@ -1,17 +1,9 @@
 import { useState } from 'react';
 import { Checkbox } from '../../../components/Checkbox/Checkbox';
 import style from './CallsTable.module.scss';
-import { SvgInOutCall } from '../../../components/SvgIcon/SvgInOutCall';
 import employe from '../../../assets/img/avatar.png';
-import { Rating } from '../../../components/Rating/Rating';
-import { RatingEnum } from '../../../shared/enums/RatingEnum';
 import { CallsTableRow } from './CallsTableRow';
 import { CallItems, StatusEnum } from '../../../models/CallItemResponse';
-
-export type CallsTableProps = {
-  rowData: CallItems[],
-
-}
 
 const getDuration = (time: number) => {
   let min = time / 60 > 1 ? Math.floor(time / 60) : 0;
@@ -25,6 +17,13 @@ const getPhoneNumber = (number: string) => {
     return number;
   }
     return `+${number[0]} (${number.slice(1,4)}) ${number.slice(4,7)}-${number.slice(7,9)}-${number.slice(9)}`;
+}
+
+
+
+export type CallsTableProps = {
+  rowData: CallItems[],
+  onCheckboxChanged: (id: string) => void;
 }
 
 export const CallsTable = (props: CallsTableProps) => {
@@ -69,8 +68,6 @@ export const CallsTable = (props: CallsTableProps) => {
         callsTime='19:00'
         isCallIncoming={true}
         isCallMissed={false}
-        onMouseOver={()=>{}}
-        isMouseOver={true}
         contact='+7 (987) 567-17-12'
         source='Санкт-Петербург источник в три строки, кто-то так пишет, ну ладно, но некрасиво'
         isFromSite={true}
@@ -84,8 +81,6 @@ export const CallsTable = (props: CallsTableProps) => {
         callsTime='19:00'
         isCallIncoming={true}
         isCallMissed={false}
-        onMouseOver={()=>{}}
-        isMouseOver={true}
         contact='Константиний Константинопольский ООО «Фестивальный эффект»'
         source='Rabota.ru'
         isFromSite={true}
@@ -95,14 +90,12 @@ export const CallsTable = (props: CallsTableProps) => {
           key={item.id}
           id={item.id}
           isChecked={item.isChecked}
-          onCheckboxClick={()=>{}}
+          onCheckboxClick={()=>props.onCheckboxChanged(item.id)}
           avatar={item.person_avatar}
           callsDuration={getDuration(item.time)}
           callsTime={item.date.slice(12,16)}
           isCallIncoming={item.in_out ? true : false}
-          isCallMissed={item.status === StatusEnum.Дозвонился ? true : false}
-          onMouseOver={()=>{}}
-          isMouseOver={true}
+          isCallMissed={item.status === StatusEnum.missed ? true : false}
           contact={`${item.partner_data.name} ${getPhoneNumber(item.partner_data.phone)}`}
           source={item.source}
           isFromSite={item.isFromSite}

@@ -15,7 +15,13 @@ import axios from 'axios';
 import { CallItemResponse, CallItems } from '../../models/CallItemResponse';
 
 export const CallsPage = () => {
-  const [modifiedResponse, setModifiedResponse] = useState<CallItems[]>([])
+  const [modifiedResponse, setModifiedResponse] = useState<CallItems[]>([]);
+
+  const onCheckboxChanged = (id: string) => {
+    const changedValue = modifiedResponse.find(item => item.id === id);
+    changedValue!.isChecked = !changedValue!.isChecked;
+    setModifiedResponse([...modifiedResponse]);
+  };
   
   useEffect(() => {
     axios({
@@ -64,7 +70,7 @@ export const CallsPage = () => {
         <FilterMenu items={DropdownRatingItems} /> 
         <FilterMenu items={DropdownMistakesItemes} />
       </div>
-      <CallsTable rowData={modifiedResponse}/>
+      <CallsTable rowData={modifiedResponse} onCheckboxChanged={onCheckboxChanged}/>
     </div>
   )
 }

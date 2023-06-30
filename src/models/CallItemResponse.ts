@@ -1,4 +1,7 @@
-export enum StatusEnum {"Не дозвонился", "Дозвонился"}
+export enum StatusEnum {
+    missed = "Не дозвонился",
+    isNotMissed = "Дозвонился"
+    }
 
 export interface CallItemResponse {
     partnership_id: number,             //???
