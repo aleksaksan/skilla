@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import style from './CallsPage.module.scss'
 import { DateFilterMenu } from '../../components/FilterMenu/DateFilterMenu';
 import { SvgSearch } from '../../components/SvgIcon/SvgFiles/SvgButtonsIcons/SvgSearch';
@@ -10,9 +10,60 @@ import {
   DropdownRatingItems,
   DropdownSourcesItemes,
   DropdownTypeItems } from '../../components/FilterMenu/DropdownMenu/DropDownMock';
-import { CallseTable } from './TableCalls/CallseTable';
+import { CallsTable } from './TableCalls/CallsTable';
+import axios from 'axios';
+import { CallItemResponse, CallItems } from '../../models/CallItemResponse';
 
 export const CallsPage = () => {
+  const [modifiedResponse, setModifiedResponse] = useState<CallItems[]>([]);
+  const [isAllChecked, setIsAllChecked] = useState(false);
+  
+  const onCheckboxChanged = (id: string) => {
+    const changedValue = modifiedResponse.find(item => item.id === id);
+    changedValue!.isChecked = !changedValue!.isChecked;
+    setModifiedResponse([...modifiedResponse]);
+  };
+
+  const onCheckAllHandler = () => {
+    // console.log('onCheckAllHandler')
+    // if (isAllChecked)
+    setIsAllChecked(!isAllChecked);
+    setModifiedResponse(modifiedResponse.map((item)=>(
+      {
+        ...item,
+        isChecked: !isAllChecked,
+      }
+    )));
+  };
+  
+  useEffect(() => {
+    axios({
+      baseURL: `https://api.skilla.ru/mango/getList`,
+      method: `post`,
+      headers: {
+        Authorization: 'Bearer testtoken',
+        'Content-Type': 'application/json',
+      },
+      params: {
+        date_start: '2023-06-19',
+        date_end: '2023-06-25',
+      },
+    }).then(respone => 
+      respone.data.results as CallItemResponse[]
+    ).then((results) => {
+      const callsItems: CallItems[] = results.map((item)=>(
+        {
+          ...item,
+          id: item.date + item.partner_data,
+          isChecked: false,
+          isFromSite: Boolean(item.from_site),
+        }
+      ))
+      setModifiedResponse(callsItems);
+    });
+    }, []);
+  
+
   return (
     <div className='container'>
       <div className={style.balance_raw}>
@@ -31,7 +82,7 @@ export const CallsPage = () => {
         <FilterMenu items={DropdownRatingItems} /> 
         <FilterMenu items={DropdownMistakesItemes} />
       </div>
-      <CallseTable />
+      <CallsTable rowData={modifiedResponse} onCheckboxChanged={onCheckboxChanged} isAllChecked={isAllChecked} onCheckAll={onCheckAllHandler}/>
     </div>
   )
 }
