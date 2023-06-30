@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import style from './CallsPage.module.scss'
 import { DateFilterMenu } from '../../components/FilterMenu/DateFilterMenu';
 import { SvgSearch } from '../../components/SvgIcon/SvgFiles/SvgButtonsIcons/SvgSearch';
@@ -12,8 +12,10 @@ import {
   DropdownTypeItems } from '../../components/FilterMenu/DropdownMenu/DropDownMock';
 import { CallsTable } from './TableCalls/CallsTable';
 import axios from 'axios';
+import { CallItemResponse, CallItems } from '../../models/CallItemResponse';
 
 export const CallsPage = () => {
+  const [modifiedResponse, setModifiedResponse] = useState<CallItems[]>([])
   
   useEffect(() => {
     axios({
@@ -24,12 +26,24 @@ export const CallsPage = () => {
         'Content-Type': 'application/json',
       },
       params: {
-        limit: 10,
+        // limit: 10,
         date_start: '2023-06-19',
-        date_end: '2023-06-22',
-      }
-    }).then(respone => console.log(respone))
-  }, []);
+        date_end: '2023-06-25',
+      },
+    }).then(respone => 
+      respone.data.results as CallItemResponse[]
+    ).then((results) => {
+      const callsItems: CallItems[] = results.map((item)=>(
+        {
+          ...item,
+          id: item.date + item.partner_data,
+          isChecked: false,
+          isFromSite: Boolean(item.from_site),
+        }
+      ))
+      setModifiedResponse(callsItems);
+    });
+    }, []);
   
 
   return (
@@ -50,7 +64,7 @@ export const CallsPage = () => {
         <FilterMenu items={DropdownRatingItems} /> 
         <FilterMenu items={DropdownMistakesItemes} />
       </div>
-      <CallsTable />
+      <CallsTable rowData={modifiedResponse}/>
     </div>
   )
 }

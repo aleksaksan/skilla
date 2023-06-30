@@ -16,8 +16,8 @@ export interface CallItemResponse {
     record: string,                     //mh
     // line_number: string,
     in_out: number,                     //mh     1 - входящий 0 - исходящий
-    from_site: string,      
-    // source: "",  
+    from_site: number,      
+    source: string,  
     errors: string[],       //mh
     // disconnect_reason: string,
     results: CallsResult[],              //to filter
@@ -31,10 +31,16 @@ export interface CallItemResponse {
     
 }
 
+export interface CallItems extends CallItemResponse {
+    id: string,
+    isChecked: boolean,
+    isFromSite: boolean,
+}
+
 export interface PartnerData {
     id: number,
     name: string,
-    phone: number,
+    phone: string,
 };
 
 interface CallsResult {
