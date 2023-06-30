@@ -5,6 +5,7 @@ import { Rating } from '../../../components/Rating/Rating'
 import style from './CallsTable.module.scss';
 import { RatingEnum } from '../../../shared/enums/RatingEnum';
 import { SvgWebIcon } from '../../../components/SvgIcon/SvgFiles/SvgInOutCall/SvgWebIcon';
+import { TableErrors } from '../TableErrors/TableErrors';
 
 export type CallsTableRowProps = {
   isChecked: boolean,
@@ -18,6 +19,7 @@ export type CallsTableRowProps = {
   callsDuration: string,
   id: string,
   isFromSite?: boolean,
+  errors?: string [],
 }
 
 export const CallsTableRow = (props: CallsTableRowProps) => {
@@ -48,8 +50,7 @@ export const CallsTableRow = (props: CallsTableRowProps) => {
       <div className={style.phone}>{props.contact}</div>
       <div className={style.source}>{props.source}</div>
       <div>
-        <Rating rating={RatingEnum.Well} isPin={true} />
-        <Rating rating={RatingEnum.Well} isPin={false} />
+        {!props.isCallMissed && props.errors && <TableErrors errors={props.errors} />}
       </div>
       <div>{props.callsDuration}</div>
     </div>

@@ -9,6 +9,10 @@
 
 
 .grid {
+  &>* {
+    z-index: 1;
+  }
+
   &.header {
     color: $text-pale;
     height: 60px;
