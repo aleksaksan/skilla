@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import style from './AudioPlayer.module.scss';
 import { SvgDownload } from "../SvgIcon/SvgFiles/SvgPlayer/SvgDownload";
 import { SvgCross } from "../SvgIcon/SvgFiles/SvgButtonsIcons/SvgCross";
+import { Loader } from "../Loader/Loader";
 
 export type AudioPlayerProps = {
   callsDuration: string,
@@ -15,6 +16,7 @@ export const AudioPlayer = (props: AudioPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
@@ -69,10 +71,14 @@ export const AudioPlayer = (props: AudioPlayerProps) => {
   }
 
   const getAudio = () => {
+    setIsLoading(true);
+
     if (!props.record?.length) {
       setError('Record is missing!');
+      setIsLoading(false);
       return;
     }
+
     fetch(`https://api.skilla.ru/mango/getRecord?record=${props.record}`, {
       method: 'post',
       headers: {
@@ -86,12 +92,14 @@ export const AudioPlayer = (props: AudioPlayerProps) => {
       const objUrl = URL.createObjectURL(blob);
       setUrl(objUrl);
       setIsSaved(true);
+      setIsLoading(false);
     }).catch(error=>console.error(error));
   };
 
   const deleteAudio = () => {
     setUrl('');
     setIsSaved(false);
+    setIsPlaying(false);
   }
 
   const onLoadedDataHandler = (e: any) => {
@@ -103,7 +111,8 @@ export const AudioPlayer = (props: AudioPlayerProps) => {
       <div className={style.time}>
         {remaningTime.min}:{remaningTime.sec}
       </div>
-      <button className={isPlaying? `${style.playbtn} ${style.pause}` : `${style.playbtn}`} onClick={play}></button>
+      {isLoading ? <div className={style.loader}><Loader /></div>
+      : <button className={isPlaying? `${style.playbtn} ${style.pause}` : `${style.playbtn}`} onClick={play}></button>}
       {!error.length ?
       <input
         className={style.input}
@@ -125,7 +134,7 @@ export const AudioPlayer = (props: AudioPlayerProps) => {
         onTimeUpdate={onTimeUpdateHandler}
         onLoadedData={onLoadedDataHandler}
         onEnded={()=>setIsPlaying(false)}
-        />
+      />
       
     </div>
   )

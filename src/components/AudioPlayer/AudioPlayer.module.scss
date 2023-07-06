@@ -1,5 +1,5 @@
 @import '../../style/colors';
-
+@import '../../style/common';
 
 .audioplayer {
   border-radius: 48px;
@@ -14,7 +14,7 @@
     fill: $primary-grey;
     margin-left: 12px;
     cursor: pointer;
-    &:hover {
+    &not:hover {
       fill: $text-blue;
     }
   }
@@ -95,4 +95,12 @@
   &.pause {
     background: url('../SvgIcon/SvgFiles/SvgPlayer/svg/pause.svg');
   }
+}
+
+.loader {
+  margin-left: 62px;
+  margin-right: 18px;
+  width: 24px;
+  height: 24px;
+  @include space-between-center;
 }
