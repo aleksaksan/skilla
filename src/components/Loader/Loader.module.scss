@@ -1,0 +1,25 @@
+@import '../../style/colors';
+
+.loader {
+  display: flex;
+  align-items: center;
+  color: $text-pale;
+  font-size: 14px;
+  line-height: 20px;
+  &>svg {
+    animation: load 0.5s linear infinite;
+  }
+  &>div {
+    margin-left: 10px;
+  }
+}
+
+
+@keyframes load {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
