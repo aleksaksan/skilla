@@ -1,9 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import style from './AudioPlayer.module.scss';
-import audioFile from '../../assets/mp3/testSong.mp3';
 import { SvgDownload } from "../SvgIcon/SvgFiles/SvgPlayer/SvgDownload";
 import { SvgCross } from "../SvgIcon/SvgFiles/SvgButtonsIcons/SvgCross";
-import axios from "axios";
 
 export type AudioPlayerProps = {
   callsDuration: string,
@@ -13,55 +11,40 @@ export type AudioPlayerProps = {
 
 export const AudioPlayer = (props: AudioPlayerProps) => {
   const audioPlayerRef = useRef<HTMLAudioElement>(null);
-  const [url, setUrl] = useState('')
+  const [url, setUrl] = useState('');
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isSaved, setIsSaved] = useState(true);
+  const [isSaved, setIsSaved] = useState(false);
+  const [error, setError] = useState('');
 
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
-
-  // const [timeDuration, setTimeDuration] = useState({
-  //     min: 0,
-  //     sec: 0,
-  // });
 
   const [remaningTime, setRemaningTime] = useState({
     min: props.callsDuration.split(':')[0],
     sec: props.callsDuration.split(':')[1],
   });
 
-
-  useEffect(() => {
-    setUrl(audioFile);
-  }, []);
-
   const onChange = (e: any) => {
     const audio = audioPlayerRef.current;
-    audio!.currentTime =  e.target.value;
+    audio!.currentTime = e.target.value;
     setCurrentTime(e.target.value)
-  }
-
-  // useEffect(() => {
-  //   const sec = Math.floor(duration % 60);
-  //   const min = Math.floor(duration / 60);
-
-  //   setTimeDuration({
-  //     min: min,
-  //     sec: sec
-  //   });
-  // }, [duration]);
+  };
 
   const play = () => {
-    const audio = audioPlayerRef.current;
+    if (!url.length) {
+      getAudio();
+    } else {
+      const audio = audioPlayerRef.current;
 
-    if (!isPlaying) {
-      setIsPlaying(true)
-      audio!.play()
-    }
+      if (!isPlaying) {
+        setIsPlaying(true);
+        audio!.play();
+      }
 
-    if (isPlaying) {
-      setIsPlaying(false)
-      audio!.pause()
+      if (isPlaying) {
+        setIsPlaying(false);
+        audio!.pause();
+      }
     }
   }
 
@@ -86,20 +69,33 @@ export const AudioPlayer = (props: AudioPlayerProps) => {
   }
 
   const getAudio = () => {
-    axios({
+    if (!props.record?.length) {
+      setError('Record is missing!');
+      return;
+    }
+    fetch(`https://api.skilla.ru/mango/getRecord?record=${props.record}`, {
       method: 'post',
-      baseURL: `https://api.skilla.ru/mango/getRecord`,
-      params: {
-        record: props.record,
-        partnership_id: props.partnershipId,
-      },
       headers: {
         Authorization: 'Bearer testtoken',
         'Content-Type': 'audio/mpeg, audio/x-mpeg, audio/x-mpeg-3, audio/mpeg3',
         'Content-Transfer-Encoding': 'binary',
         'Content-Disposition': `filename="record.mp3"`
       },
-    }).then(response=> console.log(response))
+    }).then(res=>res.blob())
+    .then(blob=>{
+      const objUrl = URL.createObjectURL(blob);
+      setUrl(objUrl);
+      setIsSaved(true);
+    }).catch(error=>console.error(error));
+  };
+
+  const deleteAudio = () => {
+    setUrl('');
+    setIsSaved(false);
+  }
+
+  const onLoadedDataHandler = (e: any) => {
+    setDuration(e.currentTarget.duration);
   }
 
   return (
@@ -108,6 +104,7 @@ export const AudioPlayer = (props: AudioPlayerProps) => {
         {remaningTime.min}:{remaningTime.sec}
       </div>
       <button className={isPlaying? `${style.playbtn} ${style.pause}` : `${style.playbtn}`} onClick={play}></button>
+      {!error.length ?
       <input
         className={style.input}
         onChange={onChange}
@@ -116,15 +113,17 @@ export const AudioPlayer = (props: AudioPlayerProps) => {
         max={duration}
         value={currentTime}
       />
+      :
+      <div className={style.errror}>{error}</div> }
       <div className={style.wrapper} onClick={getAudio} >
         <SvgDownload />
       </div>
-      {isSaved && <SvgCross />}
+      {isSaved && <div className={style.wrapper} onClick={deleteAudio} ><SvgCross /></div>}
       <audio
         ref={audioPlayerRef}
         src={url} 
         onTimeUpdate={onTimeUpdateHandler}
-        onLoadedData={(e) => setDuration(e.currentTarget.duration)}
+        onLoadedData={onLoadedDataHandler}
         onEnded={()=>setIsPlaying(false)}
         />
       

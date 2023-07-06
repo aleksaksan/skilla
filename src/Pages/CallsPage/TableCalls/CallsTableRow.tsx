@@ -1,9 +1,7 @@
-import { useEffect, useState } from 'react'
-import { Checkbox } from '../../../components/Checkbox/Checkbox'
-import { SvgInOutCall } from '../../../components/SvgIcon/SvgInOutCall'
-import { Rating } from '../../../components/Rating/Rating'
+import { useEffect, useState } from 'react';
+import { Checkbox } from '../../../components/Checkbox/Checkbox';
+import { SvgInOutCall } from '../../../components/SvgIcon/SvgInOutCall';
 import style from './CallsTable.module.scss';
-import { RatingEnum } from '../../../shared/enums/RatingEnum';
 import { SvgWebIcon } from '../../../components/SvgIcon/SvgFiles/SvgInOutCall/SvgWebIcon';
 import { TableErrors } from '../TableErrors/TableErrors';
 import { AudioPlayer } from '../../../components/AudioPlayer/AudioPlayer';
