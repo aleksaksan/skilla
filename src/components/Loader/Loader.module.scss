@@ -8,6 +8,7 @@
   line-height: 20px;
   &>svg {
     animation: load 0.5s linear infinite;
+    fill: none;
   }
   &>div {
     margin-left: 10px;

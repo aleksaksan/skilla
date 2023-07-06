@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react'
-import { Checkbox } from '../../../components/Checkbox/Checkbox'
-import { SvgInOutCall } from '../../../components/SvgIcon/SvgInOutCall'
-import { Rating } from '../../../components/Rating/Rating'
+import { useEffect, useState } from 'react';
+import { Checkbox } from '../../../components/Checkbox/Checkbox';
+import { SvgInOutCall } from '../../../components/SvgIcon/SvgInOutCall';
 import style from './CallsTable.module.scss';
-import { RatingEnum } from '../../../shared/enums/RatingEnum';
 import { SvgWebIcon } from '../../../components/SvgIcon/SvgFiles/SvgInOutCall/SvgWebIcon';
 import { TableErrors } from '../TableErrors/TableErrors';
+import { AudioPlayer } from '../../../components/AudioPlayer/AudioPlayer';
 
 export type CallsTableRowProps = {
   isChecked: boolean,
@@ -20,6 +19,8 @@ export type CallsTableRowProps = {
   id: string,
   isFromSite?: boolean,
   errors?: string [],
+  record?: string,
+  partnershipId: string,
 }
 
 export const CallsTableRow = (props: CallsTableRowProps) => {
@@ -52,7 +53,9 @@ export const CallsTableRow = (props: CallsTableRowProps) => {
       <div>
         {!props.isCallMissed && props.errors && <TableErrors errors={props.errors} />}
       </div>
-      <div>{props.callsDuration}</div>
+      <div>{props.callsDuration}
+        {!props.isCallMissed && <AudioPlayer callsDuration={props.callsDuration} record={props.record} partnershipId={props.partnershipId} />}
+      </div>
     </div>
   )
 }

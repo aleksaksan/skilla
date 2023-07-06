@@ -25,8 +25,6 @@ export const CallsPage = () => {
   };
 
   const onCheckAllHandler = () => {
-    // console.log('onCheckAllHandler')
-    // if (isAllChecked)
     setIsAllChecked(!isAllChecked);
     setModifiedResponse(modifiedResponse.map((item)=>(
       {
@@ -45,8 +43,8 @@ export const CallsPage = () => {
         'Content-Type': 'application/json',
       },
       params: {
-        date_start: '2023-06-19',
-        date_end: '2023-06-25',
+        date_start: '2023-07-01',
+        date_end: '2023-07-03',
       },
     }).then(respone => 
       respone.data.results as CallItemResponse[]

@@ -1,0 +1,106 @@
+@import '../../style/colors';
+@import '../../style/common';
+
+.audioplayer {
+  border-radius: 48px;
+  width: 352px;
+  height: 48px;
+  background-color: #EAF0FA;
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  & svg {
+    fill: $primary-grey;
+    margin-left: 12px;
+    cursor: pointer;
+    &not:hover {
+      fill: $text-blue;
+    }
+  }
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.time {
+  position: absolute;
+  right: 296px;
+  font-size: 15px;
+  line-height: 145%;
+  color: $text-primary;
+}
+.errror{
+  color: $primary-red;
+  width: 164px;
+  text-align: center;
+}
+
+.input {
+  height: 4px;
+  width: 164px;
+  appearance: none;
+  outline: none;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 50px;
+
+  &::-webkit-slider-thumb {
+    appearance: none;
+    width: 0;
+    height: 4px;
+    -webkit-appearance: none;
+    border-radius: 50px;
+  }
+  &::-moz-range-thumb {
+    appearance: none;
+    width: 0;
+    height: 4px;
+    -webkit-appearance: none;
+    border-radius: 50px;
+  }
+
+  &::-webkit-slider-runnable-track {
+    height: 4px;
+    background: $primary-grey;
+    border-radius: 50px;
+  }
+  &::-moz-range-track {
+    height: 4px;
+    background: $primary-grey;
+    border-radius: 50px;
+  }
+  &::-webkit-slider-thumb {
+    box-shadow: -156px 0 0 156px $text-blue;
+    border-radius: 50px;
+  }
+  &::-moz-range-thumb {
+    box-shadow: -156px 0 0 156px $text-blue;
+    border-radius: 50px;
+  }
+}
+
+.playbtn {
+  margin-left: 68px;
+  margin-right: 12px;
+  width: 24px;
+  height: 24px;
+  background-color: $common-white;
+  border-radius: 50%;
+  cursor: pointer;
+  background: url('../SvgIcon/SvgFiles/SvgPlayer/svg/play.svg');
+
+  &.pause {
+    background: url('../SvgIcon/SvgFiles/SvgPlayer/svg/pause.svg');
+  }
+}
+
+.loader {
+  margin-left: 62px;
+  margin-right: 18px;
+  width: 24px;
+  height: 24px;
+  @include space-between-center;
+}
