@@ -13,6 +13,7 @@ import {
 import { CallsTable } from './TableCalls/CallsTable';
 import axios from 'axios';
 import { CallItemResponse, CallItems } from '../../models/CallItemResponse';
+import { Balance } from '../../components/Balance/Balance';
 
 export const CallsPage = () => {
   const [modifiedResponse, setModifiedResponse] = useState<CallItems[]>([]);
@@ -65,7 +66,7 @@ export const CallsPage = () => {
   return (
     <div className='container'>
       <div className={style.balance_raw}>
-        {/* balance here */}
+        <Balance onClickHandler={()=>{}}/>
         <DateFilterMenu />
       </div>
       <div className={style.filter_raw}>
